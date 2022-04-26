@@ -42,69 +42,68 @@ function App() {
     .filter((quote) => quote.character.toLowerCase().includes(characterSearch))
     .map((quote, i) => {
       return (
-        <li key={i}>
+        <li className='page__list' key={i}>
           <strong> {quote.quote} </strong> - <em> {quote.character} </em>
         </li>
       );
     });
 
   return (
-    <div className='App'>
-      <h1>Frases de Friends</h1>
+    <div className='App page'>
+      <h1 className='page__title'>Frases de Friends</h1>
+      <form className='page__form' action=''>
+        <div className='page__add'>
+          <h2>Añadir una nueva frase</h2>
+          <label htmlFor=''>Frase</label>
+          <input
+            onChange={handlenewQuote}
+            type='text'
+            name='quote'
+            id='quote'
+            value={newQuote.quote}
+          />
 
-      <div>
-        <label htmlFor='quoteSearch'>Filtrar por frase</label>
-        <input
-          onChange={handleQuoteSearch}
-          type='text'
-          name='quoteSearch'
-          id='quoteSearch'
-          value={quoteSearch}
-          placeholder='¡Ay caramba!'
-        />
+          <label htmlFor=''>Personajes</label>
+          <input
+            onChange={handlenewQuote}
+            type='text'
+            name='character'
+            id='character'
+            value={newQuote.character}
+          />
+          <button onClick={handleAddBtn}>Añadir</button>
+        </div>
+        <div className='page__filter'>
+          <h2>Filtrar</h2>
 
-        <label htmlFor=''>Filtrar por personaje</label>
-        <select name='select' onChange={handleCharacterSearch}>
-          <option value='todos' defaultValue>
-            Todos
-          </option>
-          <option value='ross'>Ross</option>
-          <option value='monica'>Monica</option>
-          <option value='joey'>Joey</option>
-          <option value='phoebe'>Phoebe</option>
-          <option value='chandler'>Chandler</option>
-          <option value='rachel'>Rachel</option>
-        </select>
-      </div>
+          <label htmlFor='quoteSearch'>Filtrar por frase</label>
+          <input
+            onChange={handleQuoteSearch}
+            type='text'
+            name='quoteSearch'
+            id='quoteSearch'
+            value={quoteSearch}
+            placeholder='¡Ay caramba!'
+          />
 
-      <div>
-        <ol>{htmlQuotes}</ol>
-      </div>
-
-      <div>
-        <h2>Añadir una nueva frase</h2>
-      </div>
-
-      <form action=''>
-        <label htmlFor=''>Frase</label>
-        <input
-          onChange={handlenewQuote}
-          type='text'
-          name='quote'
-          id='quote'
-          value={newQuote.quote}
-        />
-
-        <label htmlFor=''>Personajes</label>
-        <input
-          onChange={handlenewQuote}
-          type='text'
-          name='character'
-          id='character'
-          value={newQuote.character}
-        />
-        <button onClick={handleAddBtn}>Añadir</button>
+          <label htmlFor=''>Filtrar por personaje</label>
+          <select name='select' onChange={handleCharacterSearch}>
+            <option value='todos' defaultValue>
+              Todos
+            </option>
+            <option value='ross'>Ross</option>
+            <option value='monica'>Monica</option>
+            <option value='joey'>Joey</option>
+            <option value='phoebe'>Phoebe</option>
+            <option value='chandler'>Chandler</option>
+            <option value='rachel'>Rachel</option>
+          </select>
+        </div>
       </form>
+
+      <div className='page__ul'>
+        <ul>{htmlQuotes}</ul>
+      </div>
     </div>
   );
 }

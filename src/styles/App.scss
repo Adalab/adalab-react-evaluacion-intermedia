@@ -1,0 +1,35 @@
+.page{
+  font-family: arial;
+
+  &__title{
+    display: flex;
+    justify-content: center;
+  }
+
+  &__form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  &__add{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__filter{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__ul{
+    height: 50vh;
+    overflow: scroll;
+  }
+
+  &__list{
+    list-style: none;
+    line-height: 2;
+    text-align: center;
+  }
+}
