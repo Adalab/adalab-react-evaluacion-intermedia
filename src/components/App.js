@@ -8,11 +8,12 @@ function App() {
     quote: '',
     character: '',
   });
-  const [search, setSearch] = useState('');
+  const [quoteSearch, setQuoteSearch] = useState('');
+  const [characterSearch, setCharacterSearch] = useState('');
 
   const handleAddBtn = (ev) => {
     ev.preventDefault();
-    setQuotes([...quotes, newQuote])
+    setQuotes([...quotes, newQuote]);
     // vaciar inputs
     setnewQuote({
       quote: '',
@@ -27,41 +28,54 @@ function App() {
     });
   };
 
-  const handleSearch = (ev) => {
-    setSearch(ev.target.value)
-    console.log(search);
-  }
+  const handleQuoteSearch = (ev) => {
+    setQuoteSearch(ev.target.value);
+    console.log(quoteSearch);
+  };
 
+  const handleCharacterSearch = (ev) => {
+    setCharacterSearch(ev.currentTarget.value);
+  };
 
   const htmlQuotes = quotes
-  .filter((quote) => quote.quote.toLocaleLowerCase().includes(search))
-  .map((quote, i) => {
-    return (
-      <li key={i}>
-        <strong> {quote.quote} </strong> - <em> {quote.character} </em>
-      </li>
-    );
-  });
+    .filter((quote) => quote.quote.toLowerCase().includes(quoteSearch))
+    .filter((quote) => quote.character.toLowerCase().includes(characterSearch))
+    .map((quote, i) => {
+      return (
+        <li key={i}>
+          <strong> {quote.quote} </strong> - <em> {quote.character} </em>
+        </li>
+      );
+    });
 
   return (
     <div className='App'>
       <h1>Frases de Friends</h1>
 
       <div>
-      <label htmlFor="search">Filtrar por frase</label>
-      <input onChange={handleSearch} type="text" name="search" id="search" value={search} placeholder='¡Ay caramba!'/>
-      
-      <label htmlFor="">Filtrar por personaje</label>
-      <select name="select">
-        <option value="value0" defaultValue>Todos</option>
-        <option value="value1">Ross</option>
-        <option value="value2">Monica</option>
-        <option value="value2">Joey</option>
-        <option value="value2">Phoebe</option>
-        <option value="value2">Rachel</option>
-      </select>
+        <label htmlFor='quoteSearch'>Filtrar por frase</label>
+        <input
+          onChange={handleQuoteSearch}
+          type='text'
+          name='quoteSearch'
+          id='quoteSearch'
+          value={quoteSearch}
+          placeholder='¡Ay caramba!'
+        />
 
-    </div>
+        <label htmlFor=''>Filtrar por personaje</label>
+        <select name='select' onChange={handleCharacterSearch}>
+          <option value='todos' defaultValue>
+            Todos
+          </option>
+          <option value='ross'>Ross</option>
+          <option value='monica'>Monica</option>
+          <option value='joey'>Joey</option>
+          <option value='phoebe'>Phoebe</option>
+          <option value='chandler'>Chandler</option>
+          <option value='rachel'>Rachel</option>
+        </select>
+      </div>
 
       <div>
         <ol>{htmlQuotes}</ol>
