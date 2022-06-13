@@ -1,9 +1,18 @@
+body {
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  background: rgb(131,58,180);
+  background: linear-gradient(90deg, rgba(131, 58, 180, 0.7) 0%, rgba(253,29,29, 0.7) 50%, rgba(252,176,69, 0.7) 100%);
+}
+
 .page{
-  font-family: arial;
+
+  
 
   &__title{
     display: flex;
     justify-content: center;
+    font-family: arial;
+
   }
 
   &__form{
@@ -28,6 +37,8 @@
   }
 
   &__list{
+    font-family: arial;
+
     list-style: none;
     line-height: 2;
     text-align: center;
